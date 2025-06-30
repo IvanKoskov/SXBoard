@@ -1,0 +1,2 @@
+SXBoard - clipboard management
+==============================
