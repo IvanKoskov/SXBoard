@@ -21,6 +21,7 @@ class GreetingController: NSViewController {
     var thirdVisualSeparator: NSBox!
     var fourthVisualSeparator: NSBox!
     var developedByView: NSStackView!
+    var developedByHeadingBoldLabel: NSTextField!
 
     override func loadView() {
         viewGreet = NSView()
@@ -192,6 +193,13 @@ class GreetingController: NSViewController {
         orderedGreetingView.setCustomSpacing(35, after: orderedFourthLineView)
         
         developedByView = NSStackView()
+        developedByView.orientation = .vertical
+        developedByView.alignment = .leading
+        developedByView.spacing = 10
+        developedByView.translatesAutoresizingMaskIntoConstraints = false
+        developedByView.distribution = .fill
+        
+        
 
         self.view.addSubview(orderedGreetingView)
         self.view.addSubview(closeGreeting)
