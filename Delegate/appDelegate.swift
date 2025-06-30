@@ -6,7 +6,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var greetingViewController: GreetingController!
 
     func applicationDidFinishLaunching(_ notification: Notification) {
-
+        
+        let file = File(fileName: ".sxboardlog", pathAt: homeDir().absoluteString)
+        let result = file.createPlaneConfigFile()
+        
         greetingViewController = GreetingController()
         greetWindow = NSWindow(
             contentRect: NSMakeRect(0, 0, 400, 400),

@@ -9,3 +9,4 @@
 - Working on the welcome screen
 - Got some grasp in design
 - Welcome window seemed to be better and more readable
+- Added first file manager for basic file creation in order top safe configs
