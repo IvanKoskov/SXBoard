@@ -19,3 +19,4 @@
 - Added global MacOS system wide hotkeys via HotKey by soffes on GitHub
 - Creating HUD for internal messages, testing or vital messages
 - The app might receive some sandboxing updates.... safety??
+- HUD is already working as intended and can be considered finished
