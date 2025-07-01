@@ -16,11 +16,12 @@ class AppDelegate: NSObject, NSApplicationDelegate{
     var quitMenuItem: NSMenuItem! //Located in SXBoardMenu
     var statusBar: NSStatusBar!
     var statusBarMainApplication: NSStatusItem!
+    var infoHUD: HUD!
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         setupStatusBar()
         setupMenu()
-        
+        loadHUD()
         onLaunch()
 
     }
@@ -48,7 +49,7 @@ class AppDelegate: NSObject, NSApplicationDelegate{
     @objc func loadWelcome(){
         greetingViewController = GreetingController()
         greetWindow = NSWindow(
-            contentRect: NSMakeRect(0, 0, 420, 420),
+            contentRect: NSMakeRect(0, 0, 440, 440),
             styleMask: [.borderless, .resizable],
             backing: .buffered,
             defer: false
@@ -63,6 +64,8 @@ class AppDelegate: NSObject, NSApplicationDelegate{
         greetWindow.orderFrontRegardless()
         greetWindow.hasShadow = true
         greetWindow.title = "Hello SXBoard"
+        greetWindow.identifier = NSUserInterfaceItemIdentifier("welcome")
+        print(greetWindow.identifier?.rawValue ?? "no-id")
         greetWindow.contentViewController = greetingViewController
         greetWindow.makeKeyAndOrderFront(nil)
     }
@@ -125,12 +128,24 @@ class AppDelegate: NSObject, NSApplicationDelegate{
             mainWindow.title = "SXBoard"
             mainWindow.contentViewController = mainController
             mainWindow.makeKeyAndOrderFront(nil)
+            mainWindow.identifier = NSUserInterfaceItemIdentifier("mainwin")
+            print(mainWindow.identifier?.rawValue ?? "no-id")
         }
         else {
             mainWindow.makeKeyAndOrderFront(nil)
         }
         
     }
+    
+    func loadHUD(){
+        if infoHUD == nil {
+            let hudController = WatermarkViewController()
+            infoHUD = HUD(contentR: NSRect(x: 6, y:850, width: 260, height: 40), delegate: hudController, viewController: hudController)
+        }else {
+            infoHUD.showWindowIfWasClosed()
+        }
+        }
+        
 
 
 }

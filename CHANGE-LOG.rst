@@ -17,3 +17,5 @@
 - As of now we got problems with windows and we already solved it with custom window class
 - Minor changes in all view controllers
 - Added global MacOS system wide hotkeys via HotKey by soffes on GitHub
+- Creating HUD for internal messages, testing or vital messages
+- The app might receive some sandboxing updates.... safety??
