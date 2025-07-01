@@ -24,8 +24,9 @@ class GreetingController: NSViewController {
     var developedByHeadingBoldLabel: NSTextField!
     var moreAboutView: NSStackView!
     var authorsNameGitHub: NSButton!
+    var buildInfo: NSTextField!
+    var devCredit: NSTextField!
     
-   // ♡
 
     override func loadView() {
         viewGreet = NSView()
@@ -104,7 +105,7 @@ class GreetingController: NSViewController {
         orderedFirstLineView.translatesAutoresizingMaskIntoConstraints = false
         orderedFirstLineView.alignment = .leading
 
-        firstSentence = NSTextField(string: "Starting to use it as a your main clipboard manager!")
+        firstSentence = NSTextField(string: "Your new clipboard manager")
         firstSentence.textColor = .white
         firstSentence.isEditable = false
         firstSentence.isBezeled = false
@@ -214,9 +215,40 @@ class GreetingController: NSViewController {
         
         orderedGreetingView.setCustomSpacing(35, after: orderedFourthLineView)
         
+        moreAboutView = NSStackView()
+        moreAboutView.orientation = .vertical
+        moreAboutView.alignment = .leading
+        moreAboutView.spacing = 10
+        moreAboutView.translatesAutoresizingMaskIntoConstraints = false
+        moreAboutView.distribution = .fill
         
+        authorsNameGitHub = NSButton(title: "Open source and transparency on GitHub", image: NSImage.git, target: self, action: #selector(visitGitHubSXBoard))
+        authorsNameGitHub.font = .systemFont(ofSize: 15)
+        authorsNameGitHub.isBordered = false
+        authorsNameGitHub.image?.size = NSSize(width: 15, height: 15)
         
+        buildInfo = NSTextField(string: " Current build verison 1.0.0 Apple Silicon")
+        buildInfo.textColor = .white
+        buildInfo.isEditable = false
+        buildInfo.isBezeled = false
+        buildInfo.drawsBackground = false
+        buildInfo.isSelectable = true
+        buildInfo.font = .systemFont(ofSize: 15)
         
+        devCredit = NSTextField(string: "♡ By IvanKoskov aka Evan Matthew")
+        devCredit.textColor = .lightGray
+        devCredit.isEditable = false
+        devCredit.isBezeled = false
+        devCredit.drawsBackground = false
+        devCredit.isSelectable = true
+        devCredit.font = .systemFont(ofSize: 12)
+      
+    
+        moreAboutView.addArrangedSubview(authorsNameGitHub)
+        moreAboutView.addArrangedSubview(buildInfo)
+        moreAboutView.addArrangedSubview(devCredit)
+        moreAboutView.setCustomSpacing(45, after: buildInfo)
+        orderedGreetingView.addArrangedSubview(moreAboutView)
 
         self.view.addSubview(orderedGreetingView)
         self.view.addSubview(closeGreeting)
@@ -227,7 +259,7 @@ class GreetingController: NSViewController {
             subViewOrderedGreetingTitle.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0),
             
             orderedGreetingView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 10),
-            orderedGreetingView.centerYAnchor.constraint(equalTo: self.view.topAnchor, constant: 180),
+            orderedGreetingView.centerYAnchor.constraint(equalTo: self.view.topAnchor, constant: 235),
 
             visualSeparator.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 14),
             visualSeparator.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -14),
@@ -240,6 +272,8 @@ class GreetingController: NSViewController {
             
             fourthVisualSeparator.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 14),
             fourthVisualSeparator.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -14),
+            
+            
             
             
             // Logo button size
@@ -260,5 +294,7 @@ class GreetingController: NSViewController {
                                additionalEventParamDescriptor: nil,
                                launchIdentifiers: nil)
     }
+    
+    
 }
 
