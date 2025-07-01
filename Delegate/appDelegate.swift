@@ -7,9 +7,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         
+        onLaunch()
+        
+        loadWelcome()
+
+    }
+
+    func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
+        true
+    }
+    
+    private func onLaunch(){
         let file = File(fileName: ".sxboardlog", pathAt: homeDir().absoluteString)
         let _  = file.createPlaneConfigFile()
-        
+    }
+    
+    func loadWelcome(){
         greetingViewController = GreetingController()
         greetWindow = NSWindow(
             contentRect: NSMakeRect(0, 0, 400, 400),
@@ -29,11 +42,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         greetWindow.title = "Hello SXBoard"
         greetWindow.contentViewController = greetingViewController
         greetWindow.makeKeyAndOrderFront(nil)
-
-    }
-
-    func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
-        true
     }
 
 }
