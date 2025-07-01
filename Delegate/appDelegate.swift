@@ -4,6 +4,8 @@ class AppDelegate: NSObject, NSApplicationDelegate{
 
     var greetWindow: NSWindow!
     var greetingViewController: GreetingController!
+    var mainWindow: Window!
+    var mainWindowViewController: MainViewController!
     var menu: NSMenu! //Main menu object that holds everything that is located left on menu bar for a specific app
     var appMenu: NSMenuItem!
     var SXBoardMenu: NSMenu! //Submenu of the menu
@@ -73,7 +75,7 @@ class AppDelegate: NSObject, NSApplicationDelegate{
         statusBarMainApplication.button?.image = NSImage.sxboard
         statusBarMainApplication.button?.imagePosition = .imageOnly
         statusBarMainApplication.button?.image?.size = NSSize(width: 15, height: 15)
-        statusBarMainApplication.button?.action = #selector(loadWelcome)
+        statusBarMainApplication.button?.action = #selector(loadMainWindow)
         statusBarMainApplication.button?.title = ""
         statusBarMainApplication.isVisible = true
        // menu.addItem(statusBarMainApplication)
@@ -85,9 +87,31 @@ class AppDelegate: NSObject, NSApplicationDelegate{
     }
     
     
-    
-    @objc func loadWelcomeFromBackground() {
-        self.greetWindow.makeKeyAndOrderFront(nil)
+    @objc func loadMainWindow(){
+        
+        let mainController = MainViewController()
+        
+        mainWindow = Window(
+            contentRect: NSMakeRect(0, 0, 400, 300),
+            styleMask: [.borderless],
+            backing: .buffered,
+            defer: false
+        )
+        
+        mainWindow.delegate = mainController
+        mainWindow.center()
+        mainWindow.collectionBehavior = [.canJoinAllSpaces]
+        mainWindow.titleVisibility = .hidden
+        mainWindow.level = .statusBar
+        mainWindow.backgroundColor = .clear
+        mainWindow.isMovableByWindowBackground = true
+        mainWindow.orderFrontRegardless()
+        mainWindow.hasShadow = true
+        mainWindow.title = "SXBoard"
+        mainWindow.contentViewController = mainController
+        mainWindow.makeKeyAndOrderFront(nil)
+        
+        
     }
 
 
