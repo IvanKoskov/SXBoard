@@ -13,3 +13,6 @@
 - Organized code
 - Welcome screen is UI is done
 - Working on menu bar menus and status bar items
+- Finished working on the welcome screen
+- As of now we got problems with windows and we already solved it with custom window class
+- Minor changes in all view controllers
