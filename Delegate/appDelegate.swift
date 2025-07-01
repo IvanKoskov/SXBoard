@@ -1,6 +1,6 @@
 import Cocoa
 
-class AppDelegate: NSObject, NSApplicationDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate{
 
     var greetWindow: NSWindow!
     var greetingViewController: GreetingController!
@@ -8,8 +8,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var appMenu: NSMenuItem!
     var SXBoardMenu: NSMenu! //Submenu of the menu
     var quitMenuItem: NSMenuItem! //Located in SXBoardMenu
+    var statusBar: NSStatusBar!
+    var statusBarMainApplication: NSStatusItem!
 
     func applicationDidFinishLaunching(_ notification: Notification) {
+        setupStatusBar()
         setupMenu()
         
         onLaunch()
@@ -27,7 +30,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let _  = file.createPlaneConfigFile()
     }
     
-    func loadWelcome(){
+    @objc func loadWelcome(){
         greetingViewController = GreetingController()
         greetWindow = NSWindow(
             contentRect: NSMakeRect(0, 0, 400, 400),
@@ -35,7 +38,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             backing: .buffered,
             defer: false
         )
-
+        greetWindow.delegate = greetingViewController
         greetWindow.center()
         greetWindow.collectionBehavior = [.canJoinAllSpaces]
         greetWindow.titleVisibility = .hidden
@@ -63,8 +66,29 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSApplication.shared.mainMenu = menu
     }
     
+    func setupStatusBar(){
+        statusBar = NSStatusBar()
+        statusBarMainApplication = statusBar.statusItem(withLength: -1)
+        
+        statusBarMainApplication.button?.image = NSImage.sxboard
+        statusBarMainApplication.button?.imagePosition = .imageOnly
+        statusBarMainApplication.button?.image?.size = NSSize(width: 15, height: 15)
+        statusBarMainApplication.button?.action = #selector(loadWelcome)
+        statusBarMainApplication.button?.title = ""
+        statusBarMainApplication.isVisible = true
+       // menu.addItem(statusBarMainApplication)
+        
+    }
+    
     @objc private func exit(){
         NSApplication.shared.terminate(self)
     }
+    
+    
+    
+    @objc func loadWelcomeFromBackground() {
+        self.greetWindow.makeKeyAndOrderFront(nil)
+    }
+
 
 }

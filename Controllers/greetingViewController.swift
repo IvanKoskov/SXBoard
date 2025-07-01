@@ -1,6 +1,6 @@
 import Cocoa
 
-class GreetingController: NSViewController {
+class GreetingController: NSViewController, NSWindowDelegate {
     var logoButton: NSButton!
     var logo: NSImage!
     var subViewOrderedGreetingTitle: NSStackView!
@@ -51,9 +51,9 @@ class GreetingController: NSViewController {
         if let image = NSImage(systemSymbolName: "xmark", accessibilityDescription: "") {
             closeGreeting = NSButton(image: image, target: self, action: #selector(closingGreeting))
         } else {
-            print("Image 'xmark' not found, using fallback.")
             closeGreeting = NSButton(title: "X", target: self, action: #selector(closingGreeting))
         }
+
         closeGreeting.isBordered = false
         closeGreeting.frame = NSRect(x: 375, y: 375, width: 20, height: 20)
         closeGreeting.autoresizingMask = [.minXMargin, .minYMargin]
@@ -295,6 +295,13 @@ class GreetingController: NSViewController {
                                launchIdentifiers: nil)
     }
     
+    func windowShouldClose(_ sender: NSWindow) -> Bool {
+        sender.orderOut(nil)
+        return false
+    }
+    
+
+
     
 }
 
