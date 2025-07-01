@@ -7,9 +7,12 @@
 
 import Foundation
 import Cocoa
+import HotKey
 
 class WatermarkViewController : NSViewController, NSWindowDelegate {
     var message: NSTextField!
+    var hideHUD: HotKey!
+    var hidden: Bool = false
     
     override func loadView() {
         let hudView = NSView()
@@ -32,25 +35,26 @@ class WatermarkViewController : NSViewController, NSWindowDelegate {
         message.frame = NSRect(x: 10, y: -10, width: 250, height: 40)
         
         self.view.addSubview(message)
-        /*
-        NSLayoutConstraint.activate([
-            message.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 3),
-            message.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 6),
-        ])
-*/
-        
       
     }
     
+    override func viewDidLoad() {
+        hideHUD =  HotKey(key: .h, modifiers: [.command, .option])
+        hideHUD.keyDownHandler = hideBuildInfoHUD
+    }
+    
+    func hideBuildInfoHUD(){
+        if (hidden == false) {
+            self.view.window?.orderOut(nil)
+            hidden = true
+        } else {
+            self.view.window?.makeKeyAndOrderFront(nil)
+            hidden = false
+        }
+    }
+    
+    func windowShouldClose(_ sender: NSWindow) -> Bool {
+        return true
+    }
+    
 }
-
-
-
-/*  message = Text(text: "Build 1.0.0 ARM")
- 
- self.view.addSubview(message)
- 
- NSLayoutConstraint.activate([
-     message.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
-     message.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
- ])*/

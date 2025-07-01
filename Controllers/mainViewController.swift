@@ -62,7 +62,7 @@ class MainViewController: NSViewController, NSWindowDelegate {
         view.window?.orderOut(nil)  
     }
 
-    // Optional: Implement if needed
+   
     func windowShouldClose(_ sender: NSWindow) -> Bool {
         return true
     }
