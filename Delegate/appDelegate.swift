@@ -36,10 +36,10 @@ class AppDelegate: NSObject, NSApplicationDelegate{
         let file = File(fileName: ".sxboardlog", pathAt: homeDir().absoluteString)
         let record  = file.createPlaneConfigFile()
         switch record {
-        case true:
+        case false:
             loadWelcome()
             break;
-        case false:
+        case true:
             print("Skipping welcome")
             break;
         }
@@ -48,7 +48,7 @@ class AppDelegate: NSObject, NSApplicationDelegate{
     @objc func loadWelcome(){
         greetingViewController = GreetingController()
         greetWindow = NSWindow(
-            contentRect: NSMakeRect(0, 0, 400, 400),
+            contentRect: NSMakeRect(0, 0, 420, 420),
             styleMask: [.borderless, .resizable],
             backing: .buffered,
             defer: false
@@ -104,8 +104,6 @@ class AppDelegate: NSObject, NSApplicationDelegate{
         
         if mainWindow == nil {
             
-            
-            
             let mainController = MainViewController()
             
             mainWindow = Window(
@@ -116,7 +114,7 @@ class AppDelegate: NSObject, NSApplicationDelegate{
             )
             
             mainWindow.delegate = mainController
-            mainWindow.center()
+            //mainWindow.center()
             mainWindow.collectionBehavior = [.canJoinAllSpaces]
             mainWindow.titleVisibility = .hidden
             mainWindow.level = .statusBar
