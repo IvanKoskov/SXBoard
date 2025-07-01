@@ -1,7 +1,11 @@
 import Cocoa
+import HotKey
 
 class AppDelegate: NSObject, NSApplicationDelegate{
+    //"Hot keys"
+    var openMainWindowFromBackgroundGlobally: HotKey!
 
+    //UI
     var greetWindow: NSWindow!
     var greetingViewController: GreetingController!
     var mainWindow: Window!
@@ -18,8 +22,6 @@ class AppDelegate: NSObject, NSApplicationDelegate{
         setupMenu()
         
         onLaunch()
-        
-        loadWelcome()
 
     }
 
@@ -27,9 +29,20 @@ class AppDelegate: NSObject, NSApplicationDelegate{
         true
     }
     
-    private func onLaunch(){
+    func onLaunch(){
+        openMainWindowFromBackgroundGlobally = HotKey(key: .m, modifiers: [.command, .option])
+        openMainWindowFromBackgroundGlobally.keyDownHandler = loadMainWindow
+        
         let file = File(fileName: ".sxboardlog", pathAt: homeDir().absoluteString)
-        let _  = file.createPlaneConfigFile()
+        let record  = file.createPlaneConfigFile()
+        switch record {
+        case true:
+            loadWelcome()
+            break;
+        case false:
+            print("Skipping welcome")
+            break;
+        }
     }
     
     @objc func loadWelcome(){
@@ -89,28 +102,35 @@ class AppDelegate: NSObject, NSApplicationDelegate{
     
     @objc func loadMainWindow(){
         
-        let mainController = MainViewController()
-        
-        mainWindow = Window(
-            contentRect: NSMakeRect(0, 0, 400, 300),
-            styleMask: [.borderless],
-            backing: .buffered,
-            defer: false
-        )
-        
-        mainWindow.delegate = mainController
-        mainWindow.center()
-        mainWindow.collectionBehavior = [.canJoinAllSpaces]
-        mainWindow.titleVisibility = .hidden
-        mainWindow.level = .statusBar
-        mainWindow.backgroundColor = .clear
-        mainWindow.isMovableByWindowBackground = true
-        mainWindow.orderFrontRegardless()
-        mainWindow.hasShadow = true
-        mainWindow.title = "SXBoard"
-        mainWindow.contentViewController = mainController
-        mainWindow.makeKeyAndOrderFront(nil)
-        
+        if mainWindow == nil {
+            
+            
+            
+            let mainController = MainViewController()
+            
+            mainWindow = Window(
+                contentRect: NSMakeRect(0, 0, 400, 300),
+                styleMask: [.borderless, .resizable],
+                backing: .buffered,
+                defer: false
+            )
+            
+            mainWindow.delegate = mainController
+            mainWindow.center()
+            mainWindow.collectionBehavior = [.canJoinAllSpaces]
+            mainWindow.titleVisibility = .hidden
+            mainWindow.level = .statusBar
+            mainWindow.backgroundColor = .clear
+            mainWindow.isMovableByWindowBackground = false
+            mainWindow.orderFrontRegardless()
+            mainWindow.hasShadow = true
+            mainWindow.title = "SXBoard"
+            mainWindow.contentViewController = mainController
+            mainWindow.makeKeyAndOrderFront(nil)
+        }
+        else {
+            mainWindow.makeKeyAndOrderFront(nil)
+        }
         
     }
 
