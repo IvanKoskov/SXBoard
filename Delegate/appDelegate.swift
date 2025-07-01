@@ -8,7 +8,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ notification: Notification) {
         
         let file = File(fileName: ".sxboardlog", pathAt: homeDir().absoluteString)
-        let result = file.createPlaneConfigFile()
+        let _  = file.createPlaneConfigFile()
         
         greetingViewController = GreetingController()
         greetWindow = NSWindow(

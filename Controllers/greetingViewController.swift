@@ -22,6 +22,10 @@ class GreetingController: NSViewController {
     var fourthVisualSeparator: NSBox!
     var developedByView: NSStackView!
     var developedByHeadingBoldLabel: NSTextField!
+    var moreAboutView: NSStackView!
+    var authorsNameGitHub: NSButton!
+    
+   // ♡
 
     override func loadView() {
         viewGreet = NSView()
@@ -185,6 +189,24 @@ class GreetingController: NSViewController {
         orderedFourthLineView.addArrangedSubview(fourthSentence)
         orderedGreetingView.addArrangedSubview(orderedFourthLineView)
         
+        developedByView = NSStackView()
+        developedByView.orientation = .vertical
+        developedByView.alignment = .leading
+        developedByView.spacing = 3
+        developedByView.translatesAutoresizingMaskIntoConstraints = false
+        developedByView.distribution = .fill
+        
+        developedByHeadingBoldLabel = NSTextField(string: "More about SXBoard")
+        developedByHeadingBoldLabel.textColor = .white
+        developedByHeadingBoldLabel.isEditable = false
+        developedByHeadingBoldLabel.isBezeled = false
+        developedByHeadingBoldLabel.drawsBackground = false
+        developedByHeadingBoldLabel.isSelectable = true
+        developedByHeadingBoldLabel.font = .systemFont(ofSize: 11, weight: .bold)
+        
+        developedByView.addArrangedSubview(developedByHeadingBoldLabel)
+        orderedGreetingView.addArrangedSubview(developedByView)
+        
         fourthVisualSeparator = NSBox()
         fourthVisualSeparator.boxType = .separator
        // fourthVisualSeparator.translatesAutoresizingMaskIntoConstraints = false
@@ -192,12 +214,7 @@ class GreetingController: NSViewController {
         
         orderedGreetingView.setCustomSpacing(35, after: orderedFourthLineView)
         
-        developedByView = NSStackView()
-        developedByView.orientation = .vertical
-        developedByView.alignment = .leading
-        developedByView.spacing = 10
-        developedByView.translatesAutoresizingMaskIntoConstraints = false
-        developedByView.distribution = .fill
+        
         
         
 
@@ -210,7 +227,7 @@ class GreetingController: NSViewController {
             subViewOrderedGreetingTitle.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0),
             
             orderedGreetingView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 10),
-            orderedGreetingView.centerYAnchor.constraint(equalTo: self.view.topAnchor, constant: 170),
+            orderedGreetingView.centerYAnchor.constraint(equalTo: self.view.topAnchor, constant: 180),
 
             visualSeparator.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 14),
             visualSeparator.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -14),
