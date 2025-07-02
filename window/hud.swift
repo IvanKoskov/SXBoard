@@ -16,13 +16,15 @@ class HUD: Window {
         super.init(contentRect: contentR, styleMask: [.borderless], backing: .buffered, defer: false)
 
         self.backgroundColor = .clear
+        self.collectionBehavior  = [.canJoinAllSpaces]
         self.isOpaque = false
+        self.orderFrontRegardless()
 
-        self.isMovableByWindowBackground = false
+        self.isMovableByWindowBackground = true
         self.hasShadow = false
         self.title = ""
         self.identifier = NSUserInterfaceItemIdentifier("HUD")
-
+        self.level = .statusBar
         self.contentViewController = viewController
         self.delegate = delegate
 

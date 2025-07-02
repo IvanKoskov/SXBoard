@@ -16,6 +16,10 @@ class AppDelegate: NSObject, NSApplicationDelegate{
     var quitMenuItem: NSMenuItem! //Located in SXBoardMenu
     var statusBar: NSStatusBar!
     var statusBarMainApplication: NSStatusItem!
+    var statusBarOnlyApplicationModule: NSStatusItem!
+    var statusBarMenu: NSMenu!
+    var statusBarMenuItemSettings: NSMenuItem!
+    
     var infoHUD: HUD!
 
     func applicationDidFinishLaunching(_ notification: Notification) {
@@ -37,10 +41,10 @@ class AppDelegate: NSObject, NSApplicationDelegate{
         let file = File(fileName: ".sxboardlog", pathAt: homeDir().absoluteString)
         let record  = file.createPlaneConfigFile()
         switch record {
-        case false:
+        case true:
             loadWelcome()
             break;
-        case true:
+        case false:
             print("Skipping welcome")
             break;
         }
@@ -87,6 +91,20 @@ class AppDelegate: NSObject, NSApplicationDelegate{
     func setupStatusBar(){
         statusBar = NSStatusBar()
         statusBarMainApplication = statusBar.statusItem(withLength: -1)
+        statusBarOnlyApplicationModule = statusBar.statusItem(withLength: 28)
+        
+        statusBarOnlyApplicationModule.button?.image = NSImage(systemSymbolName: "gearshape", accessibilityDescription: nil)
+        statusBarOnlyApplicationModule.button?.imagePosition = .imageOnly
+        statusBarOnlyApplicationModule.button?.action = nil
+        statusBarOnlyApplicationModule.isVisible = true
+        statusBarOnlyApplicationModule.button?.title = ""
+        statusBarOnlyApplicationModule.button?.image?.size = NSSize(width: 15, height: 15)
+        
+        statusBarMenu = NSMenu()
+        statusBarMenuItemSettings = NSMenuItem(title: "Global settings", action: nil, keyEquivalent: "s")
+        statusBarMenu.addItem(statusBarMenuItemSettings)
+        
+        statusBarOnlyApplicationModule.menu = statusBarMenu
         
         statusBarMainApplication.button?.image = NSImage.sxboard
         statusBarMainApplication.button?.imagePosition = .imageOnly
@@ -94,6 +112,8 @@ class AppDelegate: NSObject, NSApplicationDelegate{
         statusBarMainApplication.button?.action = #selector(loadMainWindow)
         statusBarMainApplication.button?.title = ""
         statusBarMainApplication.isVisible = true
+        
+        
        // menu.addItem(statusBarMainApplication)
         
     }
