@@ -165,7 +165,6 @@ class AppDelegate: NSObject, NSApplicationDelegate{
             infoHUD.showWindowIfWasClosed()
         }
         }
-        
-
+    
 
 }

@@ -12,6 +12,8 @@ class MainViewController: NSViewController, NSWindowDelegate {
     
     var hideWindow: NSButton!
     var lockWindowFixedPosition: NSButton!
+    var globalPasteBoard: PasteBoardManager!
+    
     
     override func loadView() {
         let mainView = NSView()
@@ -76,4 +78,11 @@ class MainViewController: NSViewController, NSWindowDelegate {
         }
         
     }
+
+    override func viewDidLoad() {
+        globalPasteBoard = PasteBoardManager(updateRate: 0.05)
+        globalPasteBoard.fetchClipBoard()
+    }
+    
+    
 }
