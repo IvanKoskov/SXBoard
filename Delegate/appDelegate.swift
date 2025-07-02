@@ -110,7 +110,7 @@ class AppDelegate: NSObject, NSApplicationDelegate{
             let mainController = MainViewController()
             
             mainWindow = Window(
-                contentRect: NSMakeRect(0, 0, 400, 300),
+                contentRect: NSMakeRect(1039, 575, 400, 300),
                 styleMask: [.borderless, .resizable],
                 backing: .buffered,
                 defer: false
