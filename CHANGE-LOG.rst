@@ -20,3 +20,5 @@
 - Creating HUD for internal messages, testing or vital messages
 - The app might receive some sandboxing updates.... safety??
 - HUD is already working as intended and can be considered finished
+- Changed HUD to be draggable
+- Added status bar menu only opration
