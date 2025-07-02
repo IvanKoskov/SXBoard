@@ -22,3 +22,4 @@
 - HUD is already working as intended and can be considered finished
 - Changed HUD to be draggable
 - Added status bar menu only opration
+- Everything related to the clipboard is going to be managed by PasteBoardManager class
