@@ -33,15 +33,31 @@ class PasteBoardManager: NSObject {
     }
 
     func receiveDataFromPasteBoard() {
-        if let copiedText = pasteBoard.string(forType: .string) {
-            // Avoid duplicates
-            if self.text.last != copiedText {
-                print("Copied: \(copiedText)")
-                self.text.append(copiedText)
+        guard let types = pasteBoard.types else {return}
+        
+        for type in types{
+            switch type {
+            case .string:
+                if let someText = pasteBoard.string(forType: .string) {
+                    text.append(someText)
+                    print(text)
+                }
+            default:
+          print("ERROR: No such format is supported")
             }
-        } else {
-            print("Unsupported or empty clipboard data.")
         }
+        
     }
 }
 
+/*
+ if let copiedText = pasteBoard.string(forType: .string) {
+     // Avoid duplicates
+     if self.text.last != copiedText {
+         print("Copied: \(copiedText)")
+         self.text.append(copiedText)
+     }
+ } else {
+     print("Unsupported or empty clipboard data.")
+ }
+ */
