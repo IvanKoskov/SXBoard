@@ -41,10 +41,11 @@ class AppDelegate: NSObject, NSApplicationDelegate{
         let file = File(fileName: ".sxboardlog", pathAt: homeDir().absoluteString)
         let record  = file.createPlaneConfigFile()
         switch record {
-        case true:
+        case false:
+            betaAlert()
             loadWelcome()
             break;
-        case false:
+        case true:
             print("Skipping welcome")
             break;
         }
@@ -89,6 +90,7 @@ class AppDelegate: NSObject, NSApplicationDelegate{
     }
     
     func setupStatusBar(){
+        
         statusBar = NSStatusBar()
         statusBarMainApplication = statusBar.statusItem(withLength: -1)
         statusBarOnlyApplicationModule = statusBar.statusItem(withLength: 28)
@@ -118,9 +120,7 @@ class AppDelegate: NSObject, NSApplicationDelegate{
         
     }
     
-    @objc private func exit(){
-        NSApplication.shared.terminate(self)
-    }
+    @objc private func exit(){ exitAlert() }
     
     
     @objc func loadMainWindow(){
