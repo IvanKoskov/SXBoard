@@ -26,3 +26,6 @@
 - Added combine data flow in order to represent global state
 - Adding alerts in general to make critical or important points in user experience safe, clear
 - UserDefaults.standard.set or just user defaults will be used to save state across boots
+- Experimenting with design patterns
+- Need to concentrate more on the data flow and application structure more
+- UI is on the right track
