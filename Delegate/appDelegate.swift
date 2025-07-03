@@ -93,9 +93,9 @@ class AppDelegate: NSObject, NSApplicationDelegate{
         
         statusBar = NSStatusBar()
         statusBarMainApplication = statusBar.statusItem(withLength: -1)
-        statusBarOnlyApplicationModule = statusBar.statusItem(withLength: 28)
+        statusBarOnlyApplicationModule = statusBar.statusItem(withLength: 36)
         
-        statusBarOnlyApplicationModule.button?.image = NSImage(systemSymbolName: "gearshape", accessibilityDescription: nil)
+        statusBarOnlyApplicationModule.button?.image = NSImage(systemSymbolName: "gearshape.fill", accessibilityDescription: nil)
         statusBarOnlyApplicationModule.button?.imagePosition = .imageOnly
         statusBarOnlyApplicationModule.button?.action = nil
         statusBarOnlyApplicationModule.isVisible = true

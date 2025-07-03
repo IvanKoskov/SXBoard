@@ -9,9 +9,6 @@ import Foundation
 import Cocoa
 
 class HUD: Window {
-    override var canBecomeKey: Bool { true }
-    override var canBecomeMain: Bool { true }
-
     init(contentR: NSRect, delegate: NSWindowDelegate, viewController: NSViewController) {
         super.init(contentRect: contentR, styleMask: [.borderless], backing: .buffered, defer: false)
 
@@ -19,7 +16,6 @@ class HUD: Window {
         self.collectionBehavior  = [.canJoinAllSpaces]
         self.isOpaque = false
         self.orderFrontRegardless()
-
         self.isMovableByWindowBackground = true
         self.hasShadow = false
         self.title = ""
