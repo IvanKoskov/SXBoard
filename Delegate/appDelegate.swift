@@ -4,8 +4,9 @@ import HotKey
 class AppDelegate: NSObject, NSApplicationDelegate{
     //"Hot keys"
     var openMainWindowFromBackgroundGlobally: HotKey!
-
+    var openSettingsWindowFromBackgroundGlobally: HotKey!
     //UI
+    var settingsWindow: WindowSettings!
     var greetWindow: NSWindow!
     var greetingViewController: GreetingController!
     var mainWindow: Window!
@@ -37,6 +38,9 @@ class AppDelegate: NSObject, NSApplicationDelegate{
     func onLaunch(){
         openMainWindowFromBackgroundGlobally = HotKey(key: .m, modifiers: [.command, .option])
         openMainWindowFromBackgroundGlobally.keyDownHandler = loadMainWindow
+        openSettingsWindowFromBackgroundGlobally = HotKey(key: .s, modifiers: [.command, .option])
+        openSettingsWindowFromBackgroundGlobally.keyDownHandler = loadSettings
+      
         
         let file = File(fileName: ".sxboardlog", pathAt: homeDir().absoluteString)
         let record  = file.createPlaneConfigFile()
@@ -103,7 +107,7 @@ class AppDelegate: NSObject, NSApplicationDelegate{
         statusBarOnlyApplicationModule.button?.image?.size = NSSize(width: 15, height: 15)
         
         statusBarMenu = NSMenu()
-        statusBarMenuItemSettings = NSMenuItem(title: "Global settings", action: nil, keyEquivalent: "s")
+        statusBarMenuItemSettings = NSMenuItem(title: "Global settings", action: #selector(loadSettings), keyEquivalent: "s")
         statusBarMenu.addItem(statusBarMenuItemSettings)
         
         statusBarOnlyApplicationModule.menu = statusBarMenu
@@ -165,6 +169,15 @@ class AppDelegate: NSObject, NSApplicationDelegate{
             infoHUD.showWindowIfWasClosed()
         }
         }
+    
+    @objc func loadSettings(){
+        if settingsWindow == nil {
+            let settingsController: SettingsViewController = SettingsViewController()
+            settingsWindow = WindowSettings(contentR: NSRect(x: 0, y: 0, width: 500, height: 400), delegate: settingsController, viewController: settingsController)
+        } else {
+            settingsWindow.showWindowIfWasClosed()
+        }
+    }
     
 
 }
