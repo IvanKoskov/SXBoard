@@ -11,7 +11,7 @@
 - Welcome window seemed to be better and more readable
 - Added first file manager for basic file creation in order top safe configs
 - Organized code
-- Welcome screen is UI is done
+- Welcome screen UI is done
 - Working on menu bar menus and status bar items
 - Finished working on the welcome screen
 - As of now we got problems with windows and we already solved it with custom window class
