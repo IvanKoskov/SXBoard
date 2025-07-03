@@ -25,4 +25,4 @@
 - Everything related to the clipboard is going to be managed by PasteBoardManager class
 - Added combine data flow in order to represent global state
 - Adding alerts in general to make critical or important points in user experience safe, clear
-= UserDefaults.standard.set or justuser defaults will be used to save state across boots
+- UserDefaults.standard.set or justuser defaults will be used to save state across boots
