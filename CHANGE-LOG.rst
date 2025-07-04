@@ -29,3 +29,6 @@
 - Experimenting with design patterns
 - Need to concentrate more on the data flow and application structure more
 - UI is on the right track
+- Added ability to limit number of snippets saved at times
+- Settings UI work is in full progress
+- Creating a data flow across SXBoard to always be able to access latest data from any part of the UI
