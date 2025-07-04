@@ -48,9 +48,25 @@ class PasteBoardManager: NSObject {
             switch type {
             case .string:
                 if let someText = pasteBoard.string(forType: .string) {
-                    GlobalDataModel.shared.text.append(someText)
-                    print(GlobalDataModel.shared.text)
+                    let limit = GlobalDataModel.shared.clipBoardSavedItemsLimit
+                    var items = GlobalDataModel.shared.text
+
+                    if limit - items.count == 0 {
+                        items.remove(at: 0)
+                        items.append(someText)
+                    } else if limit - items.count > 0 {
+                        items.append(someText)
+                    } else {
+                        let overflow = items.count - limit + 1
+                        items.removeFirst(overflow)
+                        items.append(someText)
+                        limitIsOver()
+                    }
+
+                    GlobalDataModel.shared.text = items
+                    print(items)
                 }
+
             default:
           print("ERROR: No such format is supported")
             }

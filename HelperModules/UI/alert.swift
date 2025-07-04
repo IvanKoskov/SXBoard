@@ -54,3 +54,21 @@ func betaAlert(){
         print("ERROR")
     }
 }
+
+func limitIsOver(){
+    var alert: NSAlert = NSAlert()
+    alert.icon = NSImage(systemSymbolName: "exclamationmark.triangle", accessibilityDescription: nil)
+    alert.addButton(withTitle: "Proceed")
+    alert.messageText = "Invalid limiting"
+    alert.informativeText = "Clipboard's limiter capacity that was selected by user in SXBoard settings does not match the actual count of clips. In this case all old (in order of creation) clips will be removed freeing space."
+    
+    let choice = alert.runModal()
+    
+    switch choice {
+    case NSApplication.ModalResponse.alertFirstButtonReturn:
+        print("Notified")
+    default:
+        print("ERROR")
+    }
+}
+

@@ -173,7 +173,7 @@ class AppDelegate: NSObject, NSApplicationDelegate{
     @objc func loadSettings(){
         if settingsWindow == nil {
             let settingsController: SettingsViewController = SettingsViewController()
-            settingsWindow = WindowSettings(contentR: NSRect(x: 0, y: 0, width: 500, height: 400), delegate: settingsController, viewController: settingsController)
+            settingsWindow = WindowSettings(contentR: NSRect(x: 0, y: 800, width: 500, height: 400), delegate: settingsController, viewController: settingsController)
         } else {
             settingsWindow.showWindowIfWasClosed()
         }
