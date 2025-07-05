@@ -30,5 +30,12 @@
 - Need to concentrate more on the data flow and application structure more
 - UI is on the right track
 - Added ability to limit number of snippets saved at times
-- Settings UI work is in full progress
+- Settings UI work is in full progress, possible changes to SwiftUI, but mostly still AppKit as a goal
 - Creating a data flow across SXBoard to always be able to access latest data from any part of the UI
+- As part of the development plan, a private branch will be created containing proprietary, non-open-source code,
+including premium features and cryptographic key logic for SXBoard. While the core SXBoard project remains open source
+under the BSD 3-Clause License, the private branch operates under a separate proprietary license and is classified as
+the intellectual property of Ivan Koskov and [TSON]. This proprietary code is strictly
+confidential, and any unauthorized access, use, or distribution is prohibited. The open-source license does not apply
+to the private branch, which will be governed by its own license terms starting from the first public release of the
+application.

@@ -18,8 +18,10 @@ class PasteBoardManager: NSObject {
     // Entries object that holds essentially all clipboard data from as the app launched and started receiving messages
     // Entries holds all types of data that clipboard can receive like text for exmaple2
     private var cancellables =  Set<AnyCancellable>()
-    //var text: [String] = []
-
+    // var text: [String] = [] // This would hold only text clips
+    // But we have a shared object that will be managed by the SXBoard
+    // It is GlobalDataModel.shared.EXAMPLE
+    
     init(updateRate: Double) {
         self.updateRate = updateRate
         super.init()
