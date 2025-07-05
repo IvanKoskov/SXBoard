@@ -36,7 +36,7 @@
 - As part of the development plan, a private branch will be created containing proprietary, non-open-source code,
 including premium features and cryptographic key logic for SXBoard. While the core SXBoard project remains open source
 under the BSD 3-Clause License, the private branch operates under a separate proprietary license and is classified as
-the intellectual property of Ivan Koskov and [TSON]. This proprietary code is strictly
+the intellectual property of Ivan Koskov aka Evan Matthew and [TSON]*. This proprietary code is strictly
 confidential, and any unauthorized access, use, or distribution is prohibited. The open-source license does not apply
 to the private branch, which will be governed by its own license terms starting from the first public release of the
 application.
