@@ -76,8 +76,6 @@ class SettingsViewController : NSViewController, NSWindowDelegate {
         closeSettings.autoresizingMask = [.minXMargin, .minYMargin]
         self.view.addSubview(closeSettings)
         loadSettings()
-        
-        asLoadedsetupAllInitialGeneralTabUI()
     }
     
     override func viewDidLoad() {
@@ -260,7 +258,7 @@ class SettingsViewController : NSViewController, NSWindowDelegate {
             generalOptionsView.bottomAnchor.constraint(lessThanOrEqualTo: segmentViews[0].bottomAnchor, constant: -10)
         ])
 
-        
+        asLoadedsetupAllInitialGeneralTabUI()
     }
     
     @objc func setupAdvancedTab(){
@@ -386,6 +384,7 @@ class SettingsViewController : NSViewController, NSWindowDelegate {
             showMainApplicationButton.selectItem(at: 0)
         } else {
             showMainApplicationButton.selectItem(at: 1)
+            applicationDelegate.statusBarMainApplication.button?.isHidden = true
         }
         
         switch GlobalDataModel.shared.clipBoardSavedItemsLimit {

@@ -21,9 +21,15 @@ class AppDelegate: NSObject, NSApplicationDelegate{
     var statusBarMenu: NSMenu!
     var statusBarMenuItemSettings: NSMenuItem!
     
+    // Data
+    var dataManagement: DataManager!
+    
     var infoHUD: HUD!
 
     func applicationDidFinishLaunching(_ notification: Notification) {
+        dataManagement = DataManager()
+        dataManagement.loadData()
+
         setupStatusBar()
         setupMenu()
         loadHUD()
@@ -118,6 +124,11 @@ class AppDelegate: NSObject, NSApplicationDelegate{
         statusBarMainApplication.button?.action = #selector(loadMainWindow)
         statusBarMainApplication.button?.title = ""
         statusBarMainApplication.isVisible = true
+        if (GlobalDataModel.shared.showMainApplicationOptional == 0){
+            statusBarMainApplication.button?.isHidden = false
+        } else if (GlobalDataModel.shared.showMainApplicationOptional == 1) {
+            statusBarMainApplication.button?.isHidden = true
+        }
         
         
        // menu.addItem(statusBarMainApplication)
@@ -179,6 +190,10 @@ class AppDelegate: NSObject, NSApplicationDelegate{
         } else {
             settingsWindow.showWindowIfWasClosed()
         }
+    }
+    
+    func applicationWillTerminate(_ notification: Notification) {
+        dataManagement.saveData()
     }
     
 
