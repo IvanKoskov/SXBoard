@@ -23,6 +23,7 @@ class PasteBoardManager: NSObject {
     // It is GlobalDataModel.shared.EXAMPLE
     
     init(updateRate: Double) {
+        
         self.updateRate = updateRate
         super.init()
         GlobalDataModel.shared.$text.sink{
@@ -30,6 +31,7 @@ class PasteBoardManager: NSObject {
             print("")
         }
         .store(in: &cancellables)
+         
     }
 
     func fetchClipBoard() {
@@ -49,31 +51,34 @@ class PasteBoardManager: NSObject {
         for type in types{
             switch type {
             case .string:
-                if let someText = pasteBoard.string(forType: .string) {
-                    let limit = GlobalDataModel.shared.clipBoardSavedItemsLimit
-                    var items = GlobalDataModel.shared.text
-
-                    if limit - items.count == 0 {
-                        items.remove(at: 0)
-                        items.append(someText)
-                    } else if limit - items.count > 0 {
-                        items.append(someText)
-                    } else {
-                        let overflow = items.count - limit + 1
-                        items.removeFirst(overflow)
-                        items.append(someText)
-                        limitIsOver()
-                    }
-
-                    GlobalDataModel.shared.text = items
-                    print(items)
-                }
-
+                receiveDataWithTypeString()
             default:
           print("ERROR: No such format is supported")
             }
         }
         
+    }
+    
+    func receiveDataWithTypeString(){
+        if let someText = pasteBoard.string(forType: .string) {
+            let limit = GlobalDataModel.shared.clipBoardSavedItemsLimit
+            var items = GlobalDataModel.shared.text
+
+            if limit - items.count == 0 {
+                items.remove(at: 0)
+                items.append(someText)
+            } else if limit - items.count > 0 {
+                items.append(someText)
+            } else {
+                let overflow = items.count - limit + 1
+                items.removeFirst(overflow)
+                items.append(someText)
+                limitIsOver()
+            }
+
+            GlobalDataModel.shared.text = items
+            print(items)
+        }
     }
 }
 

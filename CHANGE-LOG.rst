@@ -28,10 +28,11 @@
 - UserDefaults.standard.set or just user defaults will be used to save state across boots
 - Experimenting with design patterns
 - Need to concentrate more on the data flow and application structure more
-- UI is on the right track
+- UI is on the right track, added tooltips for settings options if hovered
 - Added ability to limit number of snippets saved at times
 - Settings UI work is in full progress, possible changes to SwiftUI, but mostly still AppKit as a goal
 - Creating a data flow across SXBoard to always be able to access latest data from any part of the UI
+- Planning to use SwiftUI as it is in main application window
 - As part of the development plan, a private branch will be created containing proprietary, non-open-source code,
 including premium features and cryptographic key logic for SXBoard. While the core SXBoard project remains open source
 under the BSD 3-Clause License, the private branch operates under a separate proprietary license and is classified as

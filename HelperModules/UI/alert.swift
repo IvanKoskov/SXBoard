@@ -35,7 +35,6 @@ func betaAlert(){
     alert.addButton(withTitle: "GitHub Issues")
     alert.messageText = "SXBoard is in development"
     alert.informativeText = "Currently you are using 1.0.0 ARM dev build of SXBoard that is not intended to be fully used in public. If you observed any bugs, problems please report them on our GitHub or contact support."
-    
     let choice = alert.runModal()
     
     switch choice {

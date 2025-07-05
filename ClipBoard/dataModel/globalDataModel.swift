@@ -17,5 +17,6 @@ class GlobalDataModel : ObservableObject {
     
     // Entries and other supporting data
     @Published var clipBoardSavedItemsLimit: Int = 10
+    @Published var showMainApplicationOptional: Int = 0 // 0 for default (show) and 1 for blocking
     @Published var text: [String] = []
 }
