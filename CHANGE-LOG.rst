@@ -40,3 +40,5 @@ the intellectual property of Ivan Koskov aka Evan Matthew and [TSON]*. This prop
 confidential, and any unauthorized access, use, or distribution is prohibited. The open-source license does not apply
 to the private branch, which will be governed by its own license terms starting from the first public release of the
 application.
+- Fianlly added user defaults and working settings, now application has finished methods of saving, loading and passing data.
+- Main scheme is finished
