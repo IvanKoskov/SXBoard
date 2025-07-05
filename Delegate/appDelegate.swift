@@ -125,9 +125,9 @@ class AppDelegate: NSObject, NSApplicationDelegate{
         statusBarMainApplication.button?.title = ""
         statusBarMainApplication.isVisible = true
         if (GlobalDataModel.shared.showMainApplicationOptional == 0){
-            statusBarMainApplication.button?.isHidden = false
+            statusBarMainApplication.isVisible = true
         } else if (GlobalDataModel.shared.showMainApplicationOptional == 1) {
-            statusBarMainApplication.button?.isHidden = true
+            statusBarMainApplication.isVisible = false
         }
         
         

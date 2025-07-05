@@ -366,10 +366,10 @@ class SettingsViewController : NSViewController, NSWindowDelegate {
         let choice = showMainApplicationButton.indexOfSelectedItem
         switch choice {
         case 0:
-            applicationDelegate.statusBarMainApplication.button?.isHidden = false
+            applicationDelegate.statusBarMainApplication.isVisible = true
             GlobalDataModel.shared.showMainApplicationOptional = 0
         case 1:
-            applicationDelegate.statusBarMainApplication.button?.isHidden = true
+            applicationDelegate.statusBarMainApplication.isVisible = false
             GlobalDataModel.shared.showMainApplicationOptional = 1
         default:
             print("ERROR")
@@ -382,9 +382,10 @@ class SettingsViewController : NSViewController, NSWindowDelegate {
         
         if (GlobalDataModel.shared.showMainApplicationOptional == 0){
             showMainApplicationButton.selectItem(at: 0)
+            applicationDelegate.statusBarMainApplication.isVisible = true
         } else {
             showMainApplicationButton.selectItem(at: 1)
-            applicationDelegate.statusBarMainApplication.button?.isHidden = true
+            applicationDelegate.statusBarMainApplication.isVisible = false
         }
         
         switch GlobalDataModel.shared.clipBoardSavedItemsLimit {
