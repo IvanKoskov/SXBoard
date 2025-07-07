@@ -30,4 +30,8 @@ class GlobalDataModel : ObservableObject {
         self.totalItemsCount = total
         return self.totalItemsCount
     }
+    
+    @objc func wipeClipsHistory(){
+        self.clipBoardItems.removeAll()
+    }
 }

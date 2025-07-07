@@ -22,6 +22,7 @@ class AppDelegate: NSObject, NSApplicationDelegate{
     var statusBarMenuItemSettings: NSMenuItem!
     var statusBarMenuItemAboutSXBoard: NSMenuItem!
     var statusBarMenuItemDonations: NSMenuItem!
+    var statusBarMenuItemWipeClipsHistory: NSMenuItem!
     
     // Data
     var dataManagement: DataManager!
@@ -31,6 +32,9 @@ class AppDelegate: NSObject, NSApplicationDelegate{
     func applicationDidFinishLaunching(_ notification: Notification) {
         dataManagement = DataManager()
         dataManagement.loadData()
+        print(GlobalDataModel.shared.clipBoardItems)
+        print(GlobalDataModel.shared.clipBoardItems.count)
+
 
         setupStatusBar()
         setupMenu()
@@ -122,6 +126,9 @@ class AppDelegate: NSObject, NSApplicationDelegate{
         statusBarMenu.addItem(statusBarMenuItemAboutSXBoard)
         statusBarMenuItemDonations = NSMenuItem(title: "Donate ♡", action: nil, keyEquivalent: "")
         statusBarMenu.addItem(statusBarMenuItemDonations)
+        statusBarMenuItemWipeClipsHistory = NSMenuItem(title: "Wipe all the clips", action: #selector(wipeHistory), keyEquivalent: "")
+        statusBarMenu.addItem(statusBarMenuItemWipeClipsHistory)
+        
         
         statusBarOnlyApplicationModule.menu = statusBarMenu
         
@@ -203,5 +210,8 @@ class AppDelegate: NSObject, NSApplicationDelegate{
         dataManagement.saveData()
     }
     
+    @objc func wipeHistory(){
+        GlobalDataModel.shared.wipeClipsHistory()
+    }
 
 }

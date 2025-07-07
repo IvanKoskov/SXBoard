@@ -63,7 +63,7 @@ class PasteBoardManager: NSObject {
         if let someText = pasteBoard.string(forType: .string) {
             let limit = GlobalDataModel.shared.clipBoardSavedItemsLimit
             var items = GlobalDataModel.shared.clipBoardItems
-            print(items.count)
+            
             if limit - items.count == 0 {
                 items.remove(at: 0)
                 var newItem = ClipBoardItem(text: someText)
@@ -81,7 +81,8 @@ class PasteBoardManager: NSObject {
             }
 
             GlobalDataModel.shared.clipBoardItems = items
-            print(items)
+            print(GlobalDataModel.shared.clipBoardItems)
+            print(GlobalDataModel.shared.clipBoardItems.count)
         }
     }
 }

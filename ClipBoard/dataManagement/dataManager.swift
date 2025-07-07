@@ -59,6 +59,7 @@ class DataManager: NSObject {
         } catch {
             print("ERROR loading clips")
         }
+        defaults.removeObject(forKey: "clips")
     }
     
     @objc func loadClipBoardSavedItemsLimit(){
