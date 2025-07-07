@@ -18,14 +18,15 @@ class GlobalDataModel : ObservableObject {
     // Entries and other supporting data
     @Published var clipBoardSavedItemsLimit: Int = 10
     @Published var showMainApplicationOptional: Int = 0 // 0 for default (show) and 1 for blocking
-    @Published var text: [String] = [] // Most of regular strings
+   // @Published var text: [String] = [] // Most of regular strings
+    @Published var clipBoardItems: [ClipBoardItem] = []
     
     @Published var totalItemsCount: Int!
     
     // Goes through the different types like text, images and etc and calculates the size
     // Works per call and is not kept, need to run fucntion every time clip is managed
     func totalNumberOfClips() -> Int {
-        var total: Int = text.count // + images.count + .....
+        var total: Int = clipBoardItems.count // + images.count + .....
         self.totalItemsCount = total
         return self.totalItemsCount
     }

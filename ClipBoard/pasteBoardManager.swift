@@ -26,7 +26,7 @@ class PasteBoardManager: NSObject {
         
         self.updateRate = updateRate
         super.init()
-        GlobalDataModel.shared.$text.sink{
+        GlobalDataModel.shared.$clipBoardItems.sink {
             newText in
             print("")
         }
@@ -62,21 +62,25 @@ class PasteBoardManager: NSObject {
     func receiveDataWithTypeString(){
         if let someText = pasteBoard.string(forType: .string) {
             let limit = GlobalDataModel.shared.clipBoardSavedItemsLimit
-            var items = GlobalDataModel.shared.text
-
+            var items = GlobalDataModel.shared.clipBoardItems
+            print(items.count)
             if limit - items.count == 0 {
                 items.remove(at: 0)
-                items.append(someText)
+                var newItem = ClipBoardItem(text: someText)
+                items.append(newItem)
             } else if limit - items.count > 0 {
-                items.append(someText)
+                var newItem = ClipBoardItem(text: someText)
+                items.append(newItem)
             } else {
+                print("Overflow")
                 let overflow = items.count - limit + 1
                 items.removeFirst(overflow)
-                items.append(someText)
+                var newItem = ClipBoardItem(text: someText)
+                items.append(newItem)
                 limitIsOver()
             }
 
-            GlobalDataModel.shared.text = items
+            GlobalDataModel.shared.clipBoardItems = items
             print(items)
         }
     }

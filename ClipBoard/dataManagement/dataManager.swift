@@ -23,6 +23,7 @@ class DataManager: NSObject {
     @objc func saveData(){
         saveClipBoardSavedItemsLimit()
         saveShowMainApplicationOptional()
+        saveClips()
     }
     
     @objc func saveClipBoardSavedItemsLimit(){
@@ -33,9 +34,31 @@ class DataManager: NSObject {
         defaults.set(GlobalDataModel.shared.showMainApplicationOptional, forKey: "showMain")
     }
     
+    @objc func saveClips(){
+        do {
+            let data = try JSONEncoder().encode(GlobalDataModel.shared.clipBoardItems)
+            defaults.set(data, forKey: "clips")
+        }
+        catch {
+            print("ERROR encoding clips")
+        }
+    }
+    
     @objc func loadData(){
         loadClipBoardSavedItemsLimit()
         loadShowMainApplicationOptional()
+        loadClips()
+    }
+    
+    @objc func loadClips(){
+        do {
+            guard let savedData = defaults.data(forKey: "clips") else {
+                return
+            }
+            GlobalDataModel.shared.clipBoardItems = try JSONDecoder().decode([ClipBoardItem].self, from: savedData)
+        } catch {
+            print("ERROR loading clips")
+        }
     }
     
     @objc func loadClipBoardSavedItemsLimit(){
