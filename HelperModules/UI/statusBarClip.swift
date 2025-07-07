@@ -12,9 +12,12 @@ import AppKit
 
 class StatusBarClip : NSObject {
     var isTextBased: Bool // If not it will revert to image based clip
-    var clip: NSMenuItem!
-    init(isTextBased: Bool) {
+    var clipSlot: NSMenuItem!
+    var clip: ClipBoardItem
+    
+    init(isTextBased: Bool, clip: ClipBoardItem) {
         self.isTextBased = isTextBased
+        self.clip = clip
     }
     
     @objc func addClip(){
