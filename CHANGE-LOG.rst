@@ -44,3 +44,4 @@ application.
 - Main scheme is finished
 - TODO: Create previews for clips (images)
 - Rethinking the global data object and how clips will be managed.
+- Success in saving and retriving global application state. Now closing the app will keep all the data including clips
