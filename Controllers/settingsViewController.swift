@@ -376,6 +376,7 @@ class SettingsViewController : NSViewController, NSWindowDelegate {
         }
     }
     
+    // Makes UI reflect the recently loaded preferences
     @objc func asLoadedsetupAllInitialGeneralTabUI(){
         // Makes sure UI also reflects loaded contents from last boot via UserDefaults
         // We retrive all of those from global data model in sequance and manually update all of them

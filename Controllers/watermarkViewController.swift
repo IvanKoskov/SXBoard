@@ -16,23 +16,23 @@ class WatermarkViewController : NSViewController, NSWindowDelegate {
     
     override func loadView() {
         let hudView = NSView()
-        hudView.frame = NSRect(x: 0, y: 0, width: 260, height: 40)
+        hudView.frame = NSRect(x: 0, y: 0, width: 340, height: 40)
         
         hudView.wantsLayer = true
         hudView.layer?.cornerRadius = 15
-        hudView.layer?.backgroundColor = .clear
+        hudView.layer?.backgroundColor = .black
         hudView.layer?.masksToBounds = true
 
         self.view = hudView
         
-        message = NSTextField(string: "SXBoard Build 1.0.0 Apple Silicon")
+        message = NSTextField(string: "Unlicensed SXBoard Build 1.0.0 Apple Silicon")
         message.textColor = .white
         message.isEditable = false
         message.isBezeled = false
         message.drawsBackground = false
         message.isSelectable = false
         message.font = .systemFont(ofSize: 14, weight: .bold)
-        message.frame = NSRect(x: 10, y: -10, width: 250, height: 40)
+        message.frame = NSRect(x: 10, y: -10, width: 315, height: 40)
         
         self.view.addSubview(message)
       

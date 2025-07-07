@@ -15,7 +15,9 @@ func exitAlert(){
     alert.addButton(withTitle: "Back")
     alert.messageText = "SXBoard is about to terminate!"
     alert.informativeText = "The clipboard manager will not be able to save any of the data related to your clips, saved texts or anything else that was managed by SXBoard due to complete app termination. However the settings are going to be saved.  Are u sure to proceed?"
-    
+    alert.window.orderFrontRegardless()
+    alert.window.collectionBehavior  = [.canJoinAllSpaces]
+    alert.window.level = .statusBar
     let choice = alert.runModal()
     
     switch choice {

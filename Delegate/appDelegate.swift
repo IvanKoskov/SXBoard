@@ -20,6 +20,8 @@ class AppDelegate: NSObject, NSApplicationDelegate{
     var statusBarOnlyApplicationModule: NSStatusItem!
     var statusBarMenu: NSMenu!
     var statusBarMenuItemSettings: NSMenuItem!
+    var statusBarMenuItemAboutSXBoard: NSMenuItem!
+    var statusBarMenuItemDonations: NSMenuItem!
     
     // Data
     var dataManagement: DataManager!
@@ -104,17 +106,22 @@ class AppDelegate: NSObject, NSApplicationDelegate{
         statusBar = NSStatusBar()
         statusBarMainApplication = statusBar.statusItem(withLength: -1)
         statusBarOnlyApplicationModule = statusBar.statusItem(withLength: 36)
-        
-        statusBarOnlyApplicationModule.button?.image = NSImage(systemSymbolName: "gearshape.fill", accessibilityDescription: nil)
+        statusBarOnlyApplicationModule.button?.image?.size = NSSize(width: 15, height: 15)
+       // statusBarOnlyApplicationModule.button?.image = NSImage(systemSymbolName: "gearshape.fill", accessibilityDescription: nil)
+        statusBarOnlyApplicationModule.button?.image = NSImage(systemSymbolName: "paperclip.badge.ellipsis", accessibilityDescription: nil)
         statusBarOnlyApplicationModule.button?.imagePosition = .imageOnly
         statusBarOnlyApplicationModule.button?.action = nil
         statusBarOnlyApplicationModule.isVisible = true
         statusBarOnlyApplicationModule.button?.title = ""
-        statusBarOnlyApplicationModule.button?.image?.size = NSSize(width: 15, height: 15)
         
         statusBarMenu = NSMenu()
         statusBarMenuItemSettings = NSMenuItem(title: "Global settings", action: #selector(loadSettings), keyEquivalent: "s")
         statusBarMenu.addItem(statusBarMenuItemSettings)
+        statusBarMenu.addItem(NSMenuItem.separator())
+        statusBarMenuItemAboutSXBoard = NSMenuItem(title: "About SXBoard...", action: nil, keyEquivalent: "")
+        statusBarMenu.addItem(statusBarMenuItemAboutSXBoard)
+        statusBarMenuItemDonations = NSMenuItem(title: "Donate ♡", action: nil, keyEquivalent: "")
+        statusBarMenu.addItem(statusBarMenuItemDonations)
         
         statusBarOnlyApplicationModule.menu = statusBarMenu
         
@@ -175,7 +182,7 @@ class AppDelegate: NSObject, NSApplicationDelegate{
     func loadHUD(){
         if infoHUD == nil {
             let hudController = WatermarkViewController()
-            infoHUD = HUD(contentR: NSRect(x: 6, y:850, width: 260, height: 40), delegate: hudController, viewController: hudController)
+            infoHUD = HUD(contentR: NSRect(x: 6, y:820, width: 340, height: 40), delegate: hudController, viewController: hudController)
         }else {
             infoHUD.showWindowIfWasClosed()
         }

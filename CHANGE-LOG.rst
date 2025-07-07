@@ -42,3 +42,5 @@ to the private branch, which will be governed by its own license terms starting 
 application.
 - Fianlly added user defaults and working settings, now application has finished methods of saving, loading and passing data.
 - Main scheme is finished
+- TODO: Create previews for clips (images)
+- Rethinking the global data object and how clips will be managed.
