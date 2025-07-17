@@ -157,9 +157,9 @@ class AppDelegate: NSObject, NSApplicationDelegate{
         if mainWindow == nil {
             
             let mainController = MainViewController()
-            
+            let rect = Window.snapTo(.topRightCorner)
             mainWindow = Window(
-                contentRect: NSMakeRect(1039, 575, 400, 300),
+                contentRect: rect,
                 styleMask: [.borderless, .resizable],
                 backing: .buffered,
                 defer: false
@@ -167,6 +167,7 @@ class AppDelegate: NSObject, NSApplicationDelegate{
             
             mainWindow.delegate = mainController
             //mainWindow.center()
+            
             mainWindow.collectionBehavior = [.canJoinAllSpaces]
             mainWindow.titleVisibility = .hidden
             mainWindow.level = .statusBar
