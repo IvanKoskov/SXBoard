@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import AppKit
 
 /*
  GloabalDataModel is in control of all state of the SXBoard itself (settings, clips, more)
@@ -15,6 +16,10 @@ import Combine
 class GlobalDataModel : ObservableObject {
     static var shared = GlobalDataModel()
     
+    @Published var pasteBoard: NSPasteboard = .general
+    @Published var changeCountTracker: Int = NSPasteboard.general.changeCount
+    @Published var clipBoardTimer: Timer!
+    
     // Entries and other supporting data
     @Published var clipBoardSavedItemsLimit: Int = 10
     @Published var showMainApplicationOptional: Int = 0 // 0 for default (show) and 1 for blocking
@@ -22,6 +27,8 @@ class GlobalDataModel : ObservableObject {
     @Published var clipBoardItems: [ClipBoardItem] = []
     
     @Published var totalItemsCount: Int!
+    
+    @Published var skipInternalApplicationClipBoardChange: Bool = false
     
     // Goes through the different types like text, images and etc and calculates the size
     // Works per call and is not kept, need to run fucntion every time clip is managed

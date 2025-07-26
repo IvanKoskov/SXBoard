@@ -9,12 +9,15 @@ import SwiftUI
 
 struct clipsView: View {
     @EnvironmentObject private var globalData: GlobalDataModel
+    
     var body: some View {
         VStack{
             ScrollView{
                 Text("Testing")
+               
             }
             .navigationTitle("Clips vault")
         }
+
     }
 }

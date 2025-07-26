@@ -252,6 +252,13 @@ class GreetingController: NSViewController, NSWindowDelegate {
 
         self.view.addSubview(orderedGreetingView)
         self.view.addSubview(closeGreeting)
+        self.view.alphaValue = 0
+        
+        NSAnimationContext.runAnimationGroup { context in
+            context.duration = 1
+            self.view.animator().alphaValue = 1
+        }
+
 
         // Constraints
         NSLayoutConstraint.activate([

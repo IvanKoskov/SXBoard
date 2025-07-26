@@ -7,13 +7,14 @@
 
 import Foundation
 import Cocoa
+import SwiftUI
 
 class MainViewController: NSViewController, NSWindowDelegate {
     
     var hideWindow: NSButton!
     var lockWindowFixedPosition: NSButton!
     var globalPasteBoard: PasteBoardManager!
-    
+    var mainView: NSHostingView = NSHostingView(rootView: clipsView())
     
     override func loadView() {
         let mainView = NSView()
@@ -56,7 +57,6 @@ class MainViewController: NSViewController, NSWindowDelegate {
         lockWindowFixedPosition.frame = NSRect(x: 355, y: 270, width: 20, height: 20)
         lockWindowFixedPosition.autoresizingMask = [.minXMargin, .minYMargin]
         self.view.addSubview(lockWindowFixedPosition)
-        
     }
     
     // MARK: - Button Action
@@ -81,7 +81,11 @@ class MainViewController: NSViewController, NSWindowDelegate {
 
     override func viewDidLoad() {
         globalPasteBoard = PasteBoardManager(updateRate: 0.05)
-        globalPasteBoard.fetchClipBoard()
+        PasteBoardManager.fetchClipBoard()
+        self.mainView.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(mainView)
+        mainView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        mainView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
     }
     
     

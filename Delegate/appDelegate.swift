@@ -5,6 +5,11 @@ class AppDelegate: NSObject, NSApplicationDelegate{
     //"Hot keys"
     var openMainWindowFromBackgroundGlobally: HotKey!
     var openSettingsWindowFromBackgroundGlobally: HotKey!
+    var loadOldestclip: HotKey!
+    
+    //Actions
+    var menuActions: ClipAction! = ClipAction()
+    
     //UI
     var settingsWindow: WindowSettings!
     var greetWindow: NSWindow!
@@ -52,7 +57,9 @@ class AppDelegate: NSObject, NSApplicationDelegate{
         openMainWindowFromBackgroundGlobally.keyDownHandler = loadMainWindow
         openSettingsWindowFromBackgroundGlobally = HotKey(key: .s, modifiers: [.command, .option])
         openSettingsWindowFromBackgroundGlobally.keyDownHandler = loadSettings
-      
+       
+        loadOldestclip = HotKey(key: .l, modifiers: [.command, .option])
+        loadOldestclip.keyDownHandler = {self.menuActions.clipAtIndex(index: 0)}
         
         let file = File(fileName: ".sxboardlog", pathAt: homeDir().absoluteString)
         let record  = file.createPlaneConfigFile()

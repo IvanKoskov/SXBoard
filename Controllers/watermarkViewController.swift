@@ -35,6 +35,11 @@ class WatermarkViewController : NSViewController, NSWindowDelegate {
         message.frame = NSRect(x: 10, y: -10, width: 315, height: 40)
         
         self.view.addSubview(message)
+        self.view.alphaValue = 0
+        NSAnimationContext.runAnimationGroup { context in
+            context.duration = 1
+            self.view.animator().alphaValue = 1
+        }
       
     }
     
