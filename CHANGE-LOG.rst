@@ -45,3 +45,7 @@ application.
 - TODO: Create previews for clips (images)
 - Rethinking the global data object and how clips will be managed.
 - Success in saving and retriving global application state. Now closing the app will keep all the data including clips
+- Major changes in a long time
+- Fixed image support, text support
+- Fixed big problem when clips were duplicated when SXBoard internally managed the pasteboard
+- UI changes
