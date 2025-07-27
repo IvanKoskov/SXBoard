@@ -49,3 +49,5 @@ application.
 - Fixed image support, text support
 - Fixed big problem when clips were duplicated when SXBoard internally managed the pasteboard
 - UI changes
+- Added new icon design
+- Minor scaling issues
