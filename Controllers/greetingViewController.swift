@@ -32,18 +32,18 @@ class GreetingController: NSViewController, NSWindowDelegate {
         viewGreet = NSView()
         viewGreet.frame = NSRect(x: 0, y: 0, width: 400, height: 400)
         viewGreet.wantsLayer = true
-        viewGreet.layer?.backgroundColor = NSColor.white.cgColor
+        viewGreet.layer?.backgroundColor = .white
+        viewGreet.layer?.borderColor = NSColor.white.cgColor
         viewGreet.layer?.cornerRadius = 15
+        viewGreet.layer?.borderWidth = 1
         self.view = viewGreet
 
         let blurView = NSVisualEffectView(frame: self.view.bounds)
         blurView.autoresizingMask = [.width, .height]  // resizes with window
         blurView.blendingMode = .behindWindow
-        if #available(macOS 10.14, *) {
-            blurView.material = .hudWindow
-        } else {
-            blurView.material = .sidebar
-        }
+       
+        blurView.material = .hudWindow
+      
         blurView.state = .active
 
         self.view.addSubview(blurView)
@@ -89,7 +89,7 @@ class GreetingController: NSViewController, NSWindowDelegate {
         greetingTitle.isBezeled = false
         greetingTitle.drawsBackground = false
         greetingTitle.textColor = .white
-        greetingTitle.isSelectable = true
+        greetingTitle.isSelectable = false
         greetingTitle.font = .systemFont(ofSize: 25, weight: .bold)
 
         subViewOrderedGreetingTitle.addArrangedSubview(logoButton)

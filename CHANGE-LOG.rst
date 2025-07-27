@@ -51,3 +51,4 @@ application.
 - UI changes
 - Added new icon design
 - Minor scaling issues
+- Updated the minimum MacOS version to Monterey as of problems and code for older OSs

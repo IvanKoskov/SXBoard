@@ -10,14 +10,18 @@ import SwiftUI
 struct aboutView: View {
     var body: some View {
         VStack {
-            if #available(macOS 12.0, *) {
+            HStack{
                 Image(systemName: "paperclip")
-                    .font(.system(size: 150))
+                    .font(.system(size: 100))
                     .foregroundStyle(LinearGradient(colors: [.purple, .white], startPoint: .topLeading, endPoint: .bottomTrailing))
-            } else {
-            
+                Spacer()
             }
+            Divider()
+                .foregroundColor(Color.white)
+            .padding(10)
+            Spacer()
         }
+        .padding()
         .frame(width: 500, height: 400, alignment: .center)
     }
 }
