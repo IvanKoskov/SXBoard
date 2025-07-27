@@ -13,6 +13,7 @@ class AppDelegate: NSObject, NSApplicationDelegate{
     //UI
     var settingsWindow: WindowSettings!
     var greetWindow: NSWindow!
+    var aboutAppWindow: Window!
     var greetingViewController: GreetingController!
     var mainWindow: Window!
     var mainWindowViewController: MainViewController!
@@ -43,7 +44,7 @@ class AppDelegate: NSObject, NSApplicationDelegate{
 
         setupStatusBar()
         setupMenu()
-        loadHUD()
+        //loadHUD()
         onLaunch()
 
     }
@@ -65,7 +66,7 @@ class AppDelegate: NSObject, NSApplicationDelegate{
         let record  = file.createPlaneConfigFile()
         switch record {
         case false:
-            betaAlert()
+           // betaAlert()
             loadWelcome()
             break;
         case true:
@@ -115,7 +116,7 @@ class AppDelegate: NSObject, NSApplicationDelegate{
     func setupStatusBar(){
         
         statusBar = NSStatusBar()
-        statusBarMainApplication = statusBar.statusItem(withLength: -1)
+        statusBarMainApplication = statusBar.statusItem(withLength: -2)
         statusBarOnlyApplicationModule = statusBar.statusItem(withLength: 36)
         statusBarOnlyApplicationModule.button?.image?.size = NSSize(width: 15, height: 15)
        // statusBarOnlyApplicationModule.button?.image = NSImage(systemSymbolName: "gearshape.fill", accessibilityDescription: nil)
@@ -129,7 +130,7 @@ class AppDelegate: NSObject, NSApplicationDelegate{
         statusBarMenuItemSettings = NSMenuItem(title: "Global settings", action: #selector(loadSettings), keyEquivalent: "s")
         statusBarMenu.addItem(statusBarMenuItemSettings)
         statusBarMenu.addItem(NSMenuItem.separator())
-        statusBarMenuItemAboutSXBoard = NSMenuItem(title: "About SXBoard...", action: nil, keyEquivalent: "")
+        statusBarMenuItemAboutSXBoard = NSMenuItem(title: "About SXBoard...", action: #selector(loadAbout), keyEquivalent: "")
         statusBarMenu.addItem(statusBarMenuItemAboutSXBoard)
         statusBarMenuItemDonations = NSMenuItem(title: "Donate ♡", action: nil, keyEquivalent: "")
         statusBarMenu.addItem(statusBarMenuItemDonations)
@@ -138,10 +139,11 @@ class AppDelegate: NSObject, NSApplicationDelegate{
         
         
         statusBarOnlyApplicationModule.menu = statusBarMenu
-        
-        statusBarMainApplication.button?.image = NSImage.sxboard
+        var mainAppImage = NSImage.sxboard
+        mainAppImage.size = NSSize(width: 42, height: 37)
+        statusBarMainApplication.button?.image = mainAppImage
         statusBarMainApplication.button?.imagePosition = .imageOnly
-        statusBarMainApplication.button?.image?.size = NSSize(width: 15, height: 15)
+        //statusBarMainApplication.button?.image?.size = NSSize(width: 15, height: 15)
         statusBarMainApplication.button?.action = #selector(loadMainWindow)
         statusBarMainApplication.button?.title = ""
         statusBarMainApplication.isVisible = true
@@ -212,6 +214,37 @@ class AppDelegate: NSObject, NSApplicationDelegate{
         } else {
             settingsWindow.showWindowIfWasClosed()
         }
+    }
+    
+    @objc func loadAbout(){
+        if aboutAppWindow == nil {
+            
+            let aboutController = aboutViewController()
+            aboutController.applicationDelegate = self
+            let rect = Window.snapTo(.topLeftCorner)
+            aboutAppWindow = Window(
+                contentRect: rect,
+                styleMask: [.borderless],
+                backing: .buffered,
+                defer: false
+            )
+            aboutAppWindow.center()
+            aboutAppWindow.delegate = aboutController
+            aboutAppWindow.collectionBehavior = [.canJoinAllSpaces]
+            aboutAppWindow.titleVisibility = .hidden
+            aboutAppWindow.level = .statusBar
+            aboutAppWindow.backgroundColor = .clear
+            aboutAppWindow.isMovableByWindowBackground = true
+            aboutAppWindow.orderFrontRegardless()
+            aboutAppWindow.hasShadow = true
+            aboutAppWindow.title = "About"
+            aboutAppWindow.contentViewController = aboutController
+            aboutAppWindow.makeKeyAndOrderFront(nil)
+        }
+        else {
+            aboutAppWindow.makeKeyAndOrderFront(nil)
+        }
+
     }
     
     func applicationWillTerminate(_ notification: Notification) {

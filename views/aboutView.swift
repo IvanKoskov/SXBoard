@@ -9,10 +9,16 @@ import SwiftUI
 
 struct aboutView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            if #available(macOS 12.0, *) {
+                Image(systemName: "paperclip")
+                    .font(.system(size: 150))
+                    .foregroundStyle(LinearGradient(colors: [.purple, .white], startPoint: .topLeading, endPoint: .bottomTrailing))
+            } else {
+            
+            }
+        }
+        .frame(width: 500, height: 400, alignment: .center)
     }
 }
 
-#Preview {
-    aboutView()
-}

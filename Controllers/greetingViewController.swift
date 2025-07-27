@@ -73,9 +73,10 @@ class GreetingController: NSViewController, NSWindowDelegate {
         orderedGreetingView.translatesAutoresizingMaskIntoConstraints = false
         
         if let logo = NSImage(named: "sxboard") {
+            logo.size = NSSize(width: 160, height: 130)
             logoButton = NSButton(image: logo, target: self, action: #selector(visitGitHubSXBoard))
             logoButton.isBordered = false
-            logoButton.translatesAutoresizingMaskIntoConstraints = false
+            logoButton.frame = NSRect(x: -20, y: 0, width: 160, height: 130)
         } else {
             // fallback button if image missing
             logoButton = NSButton(title: "Logo", target: self, action: #selector(visitGitHubSXBoard))
@@ -93,7 +94,7 @@ class GreetingController: NSViewController, NSWindowDelegate {
 
         subViewOrderedGreetingTitle.addArrangedSubview(logoButton)
         subViewOrderedGreetingTitle.addArrangedSubview(greetingTitle)
-        subViewOrderedGreetingTitle.setCustomSpacing(30, after: logoButton)
+        subViewOrderedGreetingTitle.setCustomSpacing(5, after: logoButton)
         
 
       //  orderedGreetingView.addArrangedSubview(subViewOrderedGreetingTitle)
@@ -263,7 +264,7 @@ class GreetingController: NSViewController, NSWindowDelegate {
         // Constraints
         NSLayoutConstraint.activate([
             subViewOrderedGreetingTitle.centerYAnchor.constraint(equalTo: self.view.topAnchor, constant: 45),
-            subViewOrderedGreetingTitle.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0),
+            subViewOrderedGreetingTitle.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: -25),
             
             orderedGreetingView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 10),
             orderedGreetingView.centerYAnchor.constraint(equalTo: self.view.topAnchor, constant: 235),
@@ -279,13 +280,11 @@ class GreetingController: NSViewController, NSWindowDelegate {
             
             fourthVisualSeparator.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 14),
             fourthVisualSeparator.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -14),
-            
-            
-            
+                    
             
             // Logo button size
-            logoButton.widthAnchor.constraint(equalToConstant: 40),
-            logoButton.heightAnchor.constraint(equalToConstant: 40),
+           //logoButton.widthAnchor.constraint(equalToConstant: 60),
+           //logoButton.heightAnchor.constraint(equalToConstant: 60),
         ])
     }
 
